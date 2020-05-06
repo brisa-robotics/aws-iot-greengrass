@@ -4,7 +4,7 @@ set -e
 
 # Initial check before starting greengrassd
 # Check if User Lambdas are starting in GreengrassContainer mode
-if grep -q "GreengrassContainer" /greengrass/ggc/deployment/group/group.json; then
+if [ $(cat /greengrass/ggc/deployment/group/group.json | jq -r '.GroupDefinitions.Lambdas.Content[0].DeploymentConfiguration.Environment.Execution.IsolationMode') = 'GreengrassContainer' ]; then
     echo "User Lambdas with GreengrassContainer mode aren't supported to run inside the GGC Docker Container. For troubleshooting, start a fresh deployment by following this guide: https://docs.aws.amazon.com/greengrass/latest/developerguide/run-gg-in-docker-container.html#docker-no-container. Finally, restart the GGC docker container after bind-mounting an empty deployment folder."
     exit 1;
 fi
