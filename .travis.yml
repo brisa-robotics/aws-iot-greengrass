@@ -9,7 +9,7 @@ script:
   # prepare qemu
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   # build image
-  - bash ./build.sh ${arch} 1.9.2
+  - bash ./build.sh ${arch} 1.10.1
 
 env:
   - arch=x86_64

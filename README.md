@@ -83,19 +83,19 @@ The following steps show how to build the Docker image from the Dockerfile and c
 
 ### Step 1. Build the AWS IoT Greengrass Docker Image
 #### On Linux or Mac OSX
-1- Download and decompress the ```aws-greengrass-docker-1.9.2``` package.
+1- Download and decompress the ```aws-greengrass-docker-1.10.1``` package.
 
-2- In a terminal, run the following commands in the location where you decompressed the ```aws-greengrass-docker-1.9.2``` package.
+2- In a terminal, run the following commands in the location where you decompressed the ```aws-greengrass-docker-1.10.1``` package.
 ```
 docker login
-cd ~/Downloads/aws-greengrass-docker-1.9.2
-docker build -t "x86_64/aws-iot-greengrass:1.9.2" ./
+cd ~/Downloads/aws-greengrass-docker-1.10.1
+docker build -t "x86_64/aws-iot-greengrass:1.10.1" ./
 ```
 
  Note: If you have ```docker-compose``` installed, you can run the following commands instead:
 ```
 docker login
-cd ~/Downloads/aws-greengrass-docker-1.9.2
+cd ~/Downloads/aws-greengrass-docker-1.10.1
 docker-compose -f docker-compose.yml build
 ```
 
@@ -108,25 +108,25 @@ docker-compose -f docker-compose.alpine-x86-64.yml build
 ```
 docker images
 REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE
-x86-64/aws-iot-greengrass           1.9.2               3f152d6707c8        17 seconds ago      532MB
+x86-64/aws-iot-greengrass           1.10.1               3f152d6707c8        17 seconds ago      532MB
 ```
 
 #### On RaspberryPi for armv7l platform
 If you want to build docker images for armv7l platform, follow below steps on RaspberryPi with Docker and Docker-compose installed.
 
-1- Download and decompress the ```aws-greengrass-docker-1.9.2``` package.
+1- Download and decompress the ```aws-greengrass-docker-1.10.1``` package.
 
-2- In a terminal, run the following commands in the location where you decompressed the ```aws-greengrass-docker-1.9.2``` package.
+2- In a terminal, run the following commands in the location where you decompressed the ```aws-greengrass-docker-1.10.1``` package.
 ```
 docker login
-cd ~/Downloads/aws-greengrass-docker-1.9.2
-docker build -t "armv7l/aws-iot-greengrass:1.9.2" -f Dockerfile.alpine-armv7l ./
+cd ~/Downloads/aws-greengrass-docker-1.10.1
+docker build -t "armv7l/aws-iot-greengrass:1.10.1" -f Dockerfile.alpine-armv7l ./
 ```
 
  Note: If you have ```docker-compose``` installed, you can run the following commands instead:
 ```
 docker login
-cd ~/Downloads/aws-greengrass-docker-1.9.2
+cd ~/Downloads/aws-greengrass-docker-1.10.1
 docker-compose -f docker-compose.alpine-armv7l.yml build
 ```
 
@@ -134,12 +134,12 @@ docker-compose -f docker-compose.alpine-armv7l.yml build
 ```
 docker images
 REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE
-armv7l/aws-iot-greengrass           1.9.2               3f152d6707c8        17 seconds ago      532MB
+armv7l/aws-iot-greengrass           1.10.1               3f152d6707c8        17 seconds ago      532MB
 ```
 
 
 #### On a Windows Computer
-1- Download and decompress the ```aws-greengrass-docker-1.9.2``` package using a utility like WinZip or 7-Zip.
+1- Download and decompress the ```aws-greengrass-docker-1.10.1``` package using a utility like WinZip or 7-Zip.
 
 2- Using Notepad++, convert the ```greengrass-entrypoint.sh``` file to use Unix-style line endings. For more information, see "Converting from Windows-style to UNIX-style line endings" (https://support.nesi.org.nz/hc/en-gb/articles/218032857-Converting-from-Windows-style-to-UNIX-style-line-endings).
 Otherwise, you will get this error while running the build Docker image: ```[FATAL tini (6)] exec /greengrass-entrypoint.sh failed: No such file or directory```.
@@ -148,17 +148,17 @@ Otherwise, you will get this error while running the build Docker image: ```[FAT
  b. In the "Edit" menu, choose "EOL Conversion", and then choose "UNIX (LF)".
  c. Save the file.
 
-3- In a command prompt, run the following command in the location where you decompressed the ```aws-greengrass-docker-1.9.2``` package.
+3- In a command prompt, run the following command in the location where you decompressed the ```aws-greengrass-docker-1.10.1``` package.
 ```
 docker login
-cd C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.9.2
-docker build -t "x86_64/aws-iot-greengrass:1.9.2" ./
+cd C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.10.1
+docker build -t "x86_64/aws-iot-greengrass:1.10.1" ./
 ```
 
  Note: If you have ```docker-compose``` installed, you can run the following commands instead:
 ```
 docker login
-cd C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.9.2
+cd C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.10.1
 docker-compose -f docker-compose.yml build
 ```
 
@@ -166,7 +166,7 @@ docker-compose -f docker-compose.yml build
 ```
 docker images
 REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE
-x86-64/aws-iot-greengrass           1.9.2               3f152d6707c8        17 seconds ago      532MB
+x86-64/aws-iot-greengrass           1.10.1               3f152d6707c8        17 seconds ago      532MB
 ```
 
 ### Step 2. Run AWS IoT Greengrass Locally
@@ -176,8 +176,8 @@ Skip step 8b of the procedure because AWS IoT Greengrass core and its runtime de
 
 2- Decompress the certificates and config file that you downloaded into your working directory where ```Dockerfile``` and ```docker-compose.yml``` are located. For example: (replace ```guid``` in your command)
 ```
-cp ~/Downloads/guid-setup.tar.gz ~/Downloads/aws-greengrass-docker-1.9.2
-cd ~/Downloads/aws-greengrass-docker-1.9.2
+cp ~/Downloads/guid-setup.tar.gz ~/Downloads/aws-greengrass-docker-1.10.1
+cd ~/Downloads/aws-greengrass-docker-1.10.1
 tar xvzf guid-setup.tar.gz
 ```
 
@@ -187,26 +187,26 @@ tar xvzf guid-setup.tar.gz
  - For ATS endpoints, you must use an ATS root CA certificate. ATS endpoints include the ```ats``` segment (for example: ```<prefix>-ats.iot.us-west-2.amazonaws.com```).
  Make sure the Docker host is connected to the internet, and run the following command. This example uses the ```AmazonRootCA1.pem``` root CA certificate.
 ```
-cd ~/Downloads/aws-greengrass-docker-1.9.2/certs
+cd ~/Downloads/aws-greengrass-docker-1.10.1/certs
 sudo wget -O root.ca.pem https://www.amazontrust.com/repository/AmazonRootCA1.pem
 ```
  - For legacy endpoints, you must use a Verisign root CA certificate. Legacy endpoints **do not** include the ```ats``` segment (for example: ```<prefix>.iot.us-west-2.amazonaws.com```).
  Make sure the Docker host is connected to the internet, and run the following command.
 ```
-cd ~/Downloads/aws-greengrass-docker-1.9.2/certs
+cd ~/Downloads/aws-greengrass-docker-1.10.1/certs
 sudo wget -O root.ca.pem https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem
 ```
 
 4- Run the following command to confirm that the ```root.ca.pem``` file is not empty.
 ```
-cat ~/Downloads/aws-greengrass-docker-1.9.2/certs/root.ca.pem
+cat ~/Downloads/aws-greengrass-docker-1.10.1/certs/root.ca.pem
 ```
 
 #### On a Windows Computer
 1- Use the AWS IoT Greengrass console to create a Greengrass group. Follow the steps in "Configure AWS IoT Greengrass on AWS IoT" (https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-config.html). This process includes downloading certificates and the core configuration file.
 Skip step 8b of the procedure because AWS IoT Greengrass core and its runtime dependencies are already set up in the Docker image.
 
-2- Decompress the certificates and config file that you downloaded into your working directory where ```Dockerfile``` and ```docker-compose.yml``` are located. Use a utility like WinZip or 7-Zip to decompress ```<guid>-setup.tar.gz``` to ```C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.9.2\```.
+2- Decompress the certificates and config file that you downloaded into your working directory where ```Dockerfile``` and ```docker-compose.yml``` are located. Use a utility like WinZip or 7-Zip to decompress ```<guid>-setup.tar.gz``` to ```C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.10.1\```.
 
 3- Download the root CA certificate into the directory where you decompressed the certificates and configuration file. The certificates enable your device to communicate with AWS IoT using the MQTT messaging protocol over TLS. For more information, including how to choose the appropriate root CA certificate, see the documentation on "Server Authentication in AWS IoT Core" (https://docs.aws.amazon.com/iot/latest/developerguide/managing-device-certs.html).
 
@@ -214,13 +214,13 @@ Skip step 8b of the procedure because AWS IoT Greengrass core and its runtime de
  - For ATS endpoints, you must use an ATS root CA certificate. ATS endpoints include the ```ats``` segment (for example: ```<prefix>-ats.iot.us-west-2.amazonaws.com```).
  Make sure the Docker host is connected to the internet. If you have ```curl``` installed, run the following commands in your command prompt. This example uses the ```AmazonRootCA1.pem``` root CA certificate.
 ```
-cd C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.9.2\certs
+cd C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.10.1\certs
 curl https://www.amazontrust.com/repository/AmazonRootCA1.pem -o root.ca.pem
 ```
  - For legacy endpoints, you must use a Verisign root CA certificate. Legacy endpoints **do not** include the ```ats``` segment (for example: ```<prefix>.iot.us-west-2.amazonaws.com```).
  Make sure the Docker host is connected to the internet. If you have ```curl``` installed, run the following commands in your command prompt.
 ```
-cd C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.9.2\certs
+cd C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.10.1\certs
 curl https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem -o root.ca.pem
 ```
 
@@ -228,11 +228,11 @@ Note: If you don't have ```curl``` installed, follow these steps:
 - In a web browser, open the root CA certificate:
  - For ATS endpoints, open an ATS root CA certificate (such as ```AmazonRootCA1.pem``` https://www.amazontrust.com/repository/AmazonRootCA1.pem).
  - For legacy endpoints, open the VeriSign Class 3 Public Primary G5 root CA certificate (https://www.symantec.com/content/en/us/enterprise/verisign/roots/VeriSign-Class%203-Public-Primary-Certification-Authority-G5.pem)
-- Save the document as ```root.ca.pem``` in the ```C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.9.2\certs``` directory, which contains the decompressed certificates. Depending on your browser, save the file directly from the browser or copy the displayed key to the clipboard and save it in Notepad.
+- Save the document as ```root.ca.pem``` in the ```C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.10.1\certs``` directory, which contains the decompressed certificates. Depending on your browser, save the file directly from the browser or copy the displayed key to the clipboard and save it in Notepad.
 
 4- Run the following command to confirm that the ```root.ca.pem``` file is not empty.
 ```
-type C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.9.2\certs\root.ca.pem
+type C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.10.1\certs\root.ca.pem
 ```
 
 ### Step 3. Run the Docker Container
@@ -242,15 +242,15 @@ type C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.9.2\certs\root.ca.pem
 ```
 docker run --rm --init -it --name aws-iot-greengrass \
 --entrypoint /greengrass-entrypoint.sh \
--v ~/Downloads/aws-greengrass-docker-1.9.2/certs:/greengrass/certs \
--v ~/Downloads/aws-greengrass-docker-1.9.2/config:/greengrass/config \
+-v ~/Downloads/aws-greengrass-docker-1.10.1/certs:/greengrass/certs \
+-v ~/Downloads/aws-greengrass-docker-1.10.1/config:/greengrass/config \
 -p 8883:8883 \
-x86_64/aws-iot-greengrass:1.9.2
+x86_64/aws-iot-greengrass:1.10.1
 ```
 
  Note: If you have ```docker-compose``` installed, you can run the following commands instead:
 ```
-cd ~/Downloads/aws-greengrass-docker-1.9.2
+cd ~/Downloads/aws-greengrass-docker-1.10.1
 docker-compose -f docker-compose.yml down
 docker-compose -f docker-compose.yml up
 ```
@@ -271,15 +271,15 @@ Note: This command starts AWS IoT Greengrass and bind-mounts the certificates an
 ```
 docker run --rm --init -it --name aws-iot-greengrass \
 --entrypoint /greengrass-entrypoint.sh \
--v ~/Downloads/aws-greengrass-docker-1.9.2/certs:/greengrass/certs \
--v ~/Downloads/aws-greengrass-docker-1.9.2/config:/greengrass/config \
+-v ~/Downloads/aws-greengrass-docker-1.10.1/certs:/greengrass/certs \
+-v ~/Downloads/aws-greengrass-docker-1.10.1/config:/greengrass/config \
 -p 8883:8883 \
-armv7l/aws-iot-greengrass:1.9.2
+armv7l/aws-iot-greengrass:1.10.1
 ```
 
  Note: If you have ```docker-compose``` installed, you can run the following commands instead:
 ```
-cd ~/Downloads/aws-greengrass-docker-1.9.2
+cd ~/Downloads/aws-greengrass-docker-1.10.1
 docker-compose -f docker-compose.alpine-armv7l.yml down
 docker-compose -f docker-compose.alpine-armv7l.yml up
 ```
@@ -298,12 +298,12 @@ Note: This command starts AWS IoT Greengrass and bind-mounts the certificates an
 #### On a Windows Computer
 1- In the command prompt, run the following command:
 ```
-docker run --rm --init -it --name aws-iot-greengrass --entrypoint /greengrass-entrypoint.sh -v c:/Users/%USERNAME%/Downloads/aws-greengrass-docker-1.9.2/certs:/greengrass/certs -v c:/Users/%USERNAME%/Downloads/aws-greengrass-docker-1.9.2/config:/greengrass/config -p 8883:8883 x86-64/aws-iot-greengrass:1.9.2
+docker run --rm --init -it --name aws-iot-greengrass --entrypoint /greengrass-entrypoint.sh -v c:/Users/%USERNAME%/Downloads/aws-greengrass-docker-1.10.1/certs:/greengrass/certs -v c:/Users/%USERNAME%/Downloads/aws-greengrass-docker-1.10.1/config:/greengrass/config -p 8883:8883 x86-64/aws-iot-greengrass:1.10.1
 ```
 
 Note: If you have ```docker-compose``` installed, you can run the following commands instead:
 ```
-cd C:/Users/%USERNAME%/Downloads/aws-greengrass-docker-1.9.2
+cd C:/Users/%USERNAME%/Downloads/aws-greengrass-docker-1.10.1
 docker-compose -f docker-compose.yml down
 docker-compose -f docker-compose.yml up
 ```
@@ -351,21 +351,21 @@ Run the following command in the terminal.
 ```
 docker run --rm --init -it --name aws-iot-greengrass \
 --entrypoint /greengrass-entrypoint.sh \
--v ~/Downloads/aws-greengrass-docker-1.9.2/certs:/greengrass/certs \
--v ~/Downloads/aws-greengrass-docker-1.9.2/config:/greengrass/config \
--v ~/Downloads/aws-greengrass-docker-1.9.2/log:/greengrass/ggc/var/log \
+-v ~/Downloads/aws-greengrass-docker-1.10.1/certs:/greengrass/certs \
+-v ~/Downloads/aws-greengrass-docker-1.10.1/config:/greengrass/config \
+-v ~/Downloads/aws-greengrass-docker-1.10.1/log:/greengrass/ggc/var/log \
 -p 8883:8883 \
-<platform>/aws-iot-greengrass:1.9.2
+<platform>/aws-iot-greengrass:1.10.1
 ```
-You can then check your logs at ```~/Downloads/aws-greengrass-docker-1.9.2/log``` on your host to see what happened while Greengrass was running inside the Docker container.
+You can then check your logs at ```~/Downloads/aws-greengrass-docker-1.10.1/log``` on your host to see what happened while Greengrass was running inside the Docker container.
 ##### On a Windows Computer
 Run the following command in the command prompt.
 ```
-cd C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.9.2
+cd C:\Users\%USERNAME%\Downloads\aws-greengrass-docker-1.10.1
 mkdir log
-docker run --rm --init -it --name aws-iot-greengrass --entrypoint /greengrass-entrypoint.sh -v c:/Users/%USERNAME%/Downloads/aws-greengrass-docker-1.9.2/certs:/greengrass/certs -v c:/Users/%USERNAME%/Downloads/aws-greengrass-docker-1.9.2/config:/greengrass/config -v c:/Users/%USERNAME%/Downloads/aws-greengrass-docker-1.9.2/log:/greengrass/ggc/var/log -p 8883:8883 x86-64/aws-iot-greengrass:1.9.2
+docker run --rm --init -it --name aws-iot-greengrass --entrypoint /greengrass-entrypoint.sh -v c:/Users/%USERNAME%/Downloads/aws-greengrass-docker-1.10.1/certs:/greengrass/certs -v c:/Users/%USERNAME%/Downloads/aws-greengrass-docker-1.10.1/config:/greengrass/config -v c:/Users/%USERNAME%/Downloads/aws-greengrass-docker-1.10.1/log:/greengrass/ggc/var/log -p 8883:8883 x86-64/aws-iot-greengrass:1.10.1
 ```
-You can then check your logs at ```c:/Users/%USERNAME%/Downloads/aws-greengrass-docker-1.9.2/log``` on your host to see what happened while Greengrass was running inside the Docker container.
+You can then check your logs at ```c:/Users/%USERNAME%/Downloads/aws-greengrass-docker-1.10.1/log``` on your host to see what happened while Greengrass was running inside the Docker container.
 
 #### Attach an Interactive Shell to the Greengrass Docker Container
 You can attach an interactive shell to a running AWS IoT Greengrass Docker container. This can help you to investigate the state of the Greengrass Docker container.
