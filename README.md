@@ -9,7 +9,7 @@ AWS IoT Greengrass can run in a Docker container. You can use the Dockerfile in 
 
 * This guide will show you how to:
  * Build a Docker image from the Dockerfile for multi-architecture platforms. Default platform is ```x86_64```.
- * Run Amazon Linux or Alpine as the default base Docker image. Default Docker Base image is ```amazonlinux:2```.
+ * Run Amazon Linux or Alpine as the default base Docker image. Default Docker Base image is ```amazonlinux:2``` or ```debian:bullseye```.
  * Use ```docker-compose``` to build and run AWS IoT Greengrass (v1.7.0 or later) in the Docker container.
  * The Docker image supports Windows, Mac OSX, and Linux as Docker host platforms to run the Greengrass core software.
  * (Optional) Techniques to reduce the size of Greengrass Docker image.
@@ -69,76 +69,32 @@ Currently, the Greengrass Docker image is about 532 MB. Most of this size is att
 
 Use following techniques to reduce the size of your Greengrass Docker image. Otherwise, continue to the "Running AWS IoT Greengrass in a Docker Container" procedure.
 
-### AWS IoT Greengrass Docker Image Size Comparison
+### AWS IoT Greengrass Docker Images
 
-| Base Image    | Installed Dependencies | Platform | Size  | Instructions                        |
-|---------------+------------------------+----------+-------+-------------------------------------|
-| AmazonLinux:2 | Python, Nodejs, Java   | x86_64   | 532MB | Default Dockerfile                  |
-| AmazonLinux:2 | Python                 | x86_64   | 370MB | Reduce Lambda Runtime Installations |
-| Alpine:3.8    | Python                 | x86_64   | 95MB  | Change the Base Docker Image        |
+Multiple docker images are available:
+* Debian: Small image, suitable for Desktop Linux and Mac OSX.
+* Amazon Linux: Complete image with Python and Node installed, suitable for EC2 servers.
+* Alpine: Minimalist image. Smallest, suitable for IoT.
+
+Different architectures are available:
+* X86_64: Desktop Linux / EC2 servers / Mac OSX / Windows
+* armv7l: for embeeded boards (such as 32 bits Rasperry Pi)
+* aarch64: for embeeded boards (such as 64 bits Rasperry Pi)
 
 ## Running AWS IoT Greengrass in a Docker Container
 The following steps show how to build the Docker image from the Dockerfile and configure AWS IoT Greengrass to run in a Docker container.
 
-
-### Step 1. Build the AWS IoT Greengrass Docker Image
-#### On Linux or Mac OSX
-1- Download and decompress the ```aws-greengrass-docker-1.10.1``` package.
-
-2- In a terminal, run the following commands in the location where you decompressed the ```aws-greengrass-docker-1.10.1``` package.
+### Linux
 ```
-docker login
-cd ~/Downloads/aws-greengrass-docker-1.10.1
-docker build -t "x86_64/aws-iot-greengrass:1.10.1" ./
+docker run --rm --init -it --name aws-iot-greengrass \
+  --entrypoint /greengrass-entrypoint.sh \
+  -v ${PWD}/certs:/greengrass/certs \
+  -v ${PWD}/config:/greengrass/config \
+  -p 8883:8883 \
+  aws-iot-greengrass:1.10.1
 ```
 
- Note: If you have ```docker-compose``` installed, you can run the following commands instead:
-```
-docker login
-cd ~/Downloads/aws-greengrass-docker-1.10.1
-docker-compose -f docker-compose.yml build
-```
-
-Note: If you want to use a smaller size docker image, run below command:
-```
-docker-compose -f docker-compose.alpine-x86-64.yml build
-```
-
-3- Verify that the Greengrass Docker image was built.
-```
-docker images
-REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE
-x86-64/aws-iot-greengrass           1.10.1               3f152d6707c8        17 seconds ago      532MB
-```
-
-#### On RaspberryPi for armv7l platform
-If you want to build docker images for armv7l platform, follow below steps on RaspberryPi with Docker and Docker-compose installed.
-
-1- Download and decompress the ```aws-greengrass-docker-1.10.1``` package.
-
-2- In a terminal, run the following commands in the location where you decompressed the ```aws-greengrass-docker-1.10.1``` package.
-```
-docker login
-cd ~/Downloads/aws-greengrass-docker-1.10.1
-docker build -t "armv7l/aws-iot-greengrass:1.10.1" -f Dockerfile.alpine-armv7l ./
-```
-
- Note: If you have ```docker-compose``` installed, you can run the following commands instead:
-```
-docker login
-cd ~/Downloads/aws-greengrass-docker-1.10.1
-docker-compose -f docker-compose.alpine-armv7l.yml build
-```
-
-3- Verify that the Greengrass Docker image was built.
-```
-docker images
-REPOSITORY                          TAG                 IMAGE ID            CREATED             SIZE
-armv7l/aws-iot-greengrass           1.10.1               3f152d6707c8        17 seconds ago      532MB
-```
-
-
-#### On a Windows Computer
+### On a Windows PC
 1- Download and decompress the ```aws-greengrass-docker-1.10.1``` package using a utility like WinZip or 7-Zip.
 
 2- Using Notepad++, convert the ```greengrass-entrypoint.sh``` file to use Unix-style line endings. For more information, see "Converting from Windows-style to UNIX-style line endings" (https://support.nesi.org.nz/hc/en-gb/articles/218032857-Converting-from-Windows-style-to-UNIX-style-line-endings).

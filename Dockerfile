@@ -6,7 +6,7 @@ ARG GREENGRASS_RELEASE_URL=https://d1onfpft10uf5o.cloudfront.net/greengrass-core
 
 # Install Greengrass Core Dependencies
 RUN apt update -y \
-    && apt install -y tar wget \
+    && apt install -y jq tar wget \
     && wget -q $GREENGRASS_RELEASE_URL \
     && apt-get remove -y wget \
     && rm -rf /var/apt/lists/*
