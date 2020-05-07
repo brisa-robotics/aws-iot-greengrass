@@ -1,34 +1,15 @@
-FROM amazonlinux:2
+FROM debian:bullseye
 
 # Set ENV_VAR for Greengrass RC to be untarred inside Docker Image
 ARG VERSION=1.10.1
 ARG GREENGRASS_RELEASE_URL=https://d1onfpft10uf5o.cloudfront.net/greengrass-core/downloads/${VERSION}/greengrass-linux-x86-64-${VERSION}.tar.gz
 
 # Install Greengrass Core Dependencies
-RUN yum update -y && \
-    yum install -y shadow-utils tar.x86_64 gzip xz wget iproute java-1.8.0 make && \
-    yum install -y gcc openssl-devel libffi-devel && \
-    ln -s /usr/bin/java /usr/local/bin/java8 && \
-    wget $GREENGRASS_RELEASE_URL && \
-    wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz && \
-    tar xzf Python-3.7.3.tgz && \
-    cd Python-3.7.3 && \
-    ./configure --enable-optimizations && \
-    make altinstall && \
-    ln -s /usr/local/bin/python3.7 /usr/bin/python3.7 && \
-    cd ../ && \
-    wget https://nodejs.org/dist/v6.10.2/node-v6.10.2-linux-x64.tar.xz && \
-    tar xf node-v6.10.2-linux-x64.tar.xz && \
-    cp node-v6.10.2-linux-x64/bin/node /usr/bin/node && \
-    ln -s /usr/bin/node /usr/bin/nodejs6.10 && \
-    wget https://nodejs.org/dist/v8.10.0/node-v8.10.0-linux-x64.tar.xz && \
-    tar xf node-v8.10.0-linux-x64.tar.xz && \
-    cp node-v8.10.0-linux-x64/bin/node /usr/bin/nodejs8.10 && \
-    rm -rf node-v6.10.2-linux-x64.tar.xz node-v6.10.2-linux-x64 && \
-    rm -rf node-v8.10.0-linux-x64.tar.xz node-v8.10.0-linux-x64 && \
-    rm -rf Python-3.7.3.tgz Python-3.7.3 && \
-    yum remove -y wget && \
-    rm -rf /var/cache/yum
+RUN apt update -y \
+    && apt install -y tar wget \
+    && wget -q $GREENGRASS_RELEASE_URL \
+    && apt-get remove -y wget \
+    && rm -rf /var/apt/lists/*
 
 # Copy Greengrass Licenses AWS IoT Greengrass Docker Image
 COPY greengrass-license-v1.pdf /
