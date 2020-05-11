@@ -6,7 +6,7 @@ ARG GREENGRASS_RELEASE_URL=https://d1onfpft10uf5o.cloudfront.net/greengrass-core
 
 # Install Greengrass Core Dependencies
 RUN yum update -y \
-    && yum install -y shadow-utils tar.x86_64 gzip xz wget iproute java-1.8.0 make \
+    && yum install -y jq shadow-utils tar.x86_64 gzip xz wget iproute java-1.8.0 make \
     && yum install -y gcc openssl-devel libffi-devel \
     && ln -s /usr/bin/java /usr/local/bin/java8 \
     && wget $GREENGRASS_RELEASE_URL \
